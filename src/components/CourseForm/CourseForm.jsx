@@ -2,10 +2,10 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-export const CreateCourse = ({authorsList, createCourse, createAuthor}) => {
+export const CourseForm = ({authorsList, createCourse, createAuthor}) => {
 
 	//write your code here
-	
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
