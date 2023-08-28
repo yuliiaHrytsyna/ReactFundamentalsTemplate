@@ -1,14 +1,16 @@
 import React from 'react';
 
+import { formatCreationDate, getCourseDuration } from '../../helpers';
+
 import styles from './styles.module.css';
 
-export const CourseInfo = ({course, authorsList}) => {
+export const CourseInfo = ({coursesList,authorsList,onBack,showCourseId}) => {
 
 	// write your code here
 
 	return (
-		<>
-			// Module 1: reuse Button component for 'back' functionality 
+		<div data-testid='courseInfo'>
+			// Module 1: reuse Button component for 'onBack' functionality 
 			// Module 2: use 'react-router-dom' 'Link' component for button 'Back'
 
 			<h1>Course title</h1>
@@ -35,6 +37,6 @@ export const CourseInfo = ({course, authorsList}) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };

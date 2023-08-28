@@ -23,7 +23,7 @@ export const CourseForm = ({authorsList, createCourse, createAuthor}) => {
 				<div>
 					// use CreateAuthor component
 
-					// reuse Input component for duration field
+					// reuse Input component with data-testid='durationInput' for duration field
 
 					<p>Duration: </p>
 				</div>
@@ -38,7 +38,7 @@ export const CourseForm = ({authorsList, createCourse, createAuthor}) => {
 					// use 'map' to display course's autors
 					{/* <p data-testid="selectedAuthor"}>{author.name}</p> */}
 
-					<p data-testid="emptyText" className={styles.notification}>List is empty</p> // display this paragraph if there are no authors in the course
+					<p className={styles.notification}>List is empty</p> // display this paragraph if there are no authors in the course
 				</div>
 			</div>
 		</form>
