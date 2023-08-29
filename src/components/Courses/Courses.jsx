@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-export const Courses = ({courseList, onAddClick, setSelectedCourseId}) => {
+export const Courses = ({coursesList, authorsList, handleShowCourse}) => {
 
 	// write your code here
 

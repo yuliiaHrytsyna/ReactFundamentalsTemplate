@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const CourseCard = ({course}) => {
+import { getCourseDuration, formatCreationDate } from '../../../../helpers';
+
+export const CourseCard = ({course, handleShowCourse}) => {
 
 		// write your code here
 
