@@ -13,6 +13,7 @@ export const coursesSlice = createSlice({
 	},
 });
 
+// use these actions in your components / thunks
 export const { setCourses, saveCourse, deleteCourse, updateCourse } =
 	coursesSlice.actions;
 

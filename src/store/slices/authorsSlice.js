@@ -11,6 +11,7 @@ export const authorsSlice = createSlice({
 	},
 });
 
+// use these actions in your components / thunks
 export const { setAuthors, saveAuthor } = authorsSlice.actions;
 
 export default authorsSlice.reducer;

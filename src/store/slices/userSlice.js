@@ -16,6 +16,7 @@ export const userSlice = createSlice({
 	},
 });
 
+// use these actions in your components / thunks
 export const { setUserData, removeUserData } = userSlice.actions;
 
 export default userSlice.reducer;
