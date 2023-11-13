@@ -11,7 +11,7 @@ export const CourseInfo = ({coursesList,authorsList,onBack,showCourseId}) => {
 	return (
 		<div data-testid='courseInfo'>
 			// Module 1: reuse Button component for 'onBack' functionality 
-			// Module 2: use 'react-router-dom' 'Link' component for button 'Back'
+			// Module 2: use 'react-router-dom' 'Link' component for button 'Back' and remove 'onBack' prop
 
 			<h1>Course title</h1>
 			<div className={styles.courseInfo}>
