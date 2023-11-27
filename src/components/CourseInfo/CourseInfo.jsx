@@ -1,10 +1,32 @@
+// This component shows information about the current chosen course.
+
+// Module 1.
+// * Use template to show course's information:
+	// ** ID of course;
+	// ** Title;
+	// ** Description;
+	// ** Duration;
+	// ** List of authors;
+	// ** Creation date;
+// * use <Button /> component to replace CourseInfo component with Courses component
+
+// Module 2.
+// * render component by route '/courses/:courseId'
+// * use 'useParam' hook to get course id, remove prop 'showCourseId'
+// * use '<Link />' instead <Button /> component for 'BACK' button
+
 import React from 'react';
 
 import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
 
-export const CourseInfo = ({coursesList,authorsList,onBack,showCourseId}) => {
+
+// props description
+// * 'coursesList' - list of all courses. You need it to get chosen course from the list
+// * 'authorsList' - list of all authors. You need it to get authors' names for cjosen course
+// * 'showCourseId' - id of chosen course. Use it to find needed course on the 'coursesList'.
+export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => {
 
 	// write your code here
 
