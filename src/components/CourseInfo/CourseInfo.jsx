@@ -13,7 +13,12 @@
 // Module 2.
 // * render component by route '/courses/:courseId'
 // * use 'useParam' hook to get course id, remove prop 'showCourseId'
+// * remove 'onBack' prop
 // * use '<Link />' instead <Button /> component for 'BACK' button
+
+// Module 3.
+// * remove props 'coursesList', 'authorsList'
+// * use selectors from store/selectors.js to get coursesList, authorsList from store
 
 import React from 'react';
 
@@ -24,7 +29,7 @@ import styles from './styles.module.css';
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
-// * 'authorsList' - list of all authors. You need it to get authors' names for cjosen course
+// * 'authorsList' - list of all authors. You need it to get authors' names for chosen course
 // * 'showCourseId' - id of chosen course. Use it to find needed course on the 'coursesList'.
 export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => {
 
