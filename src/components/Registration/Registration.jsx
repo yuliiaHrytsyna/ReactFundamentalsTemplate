@@ -6,6 +6,7 @@
 // // * add validation for fields: all fields are required. Show validation message. https://www.figma.com/file/m0N0SGLclqUEGR6TUNvyn9/Fundamentals-Courses?type=design&node-id=2932-257&mode=design&t=0FIG0iRzKcD0s16M-0
 // // * render this component by route '/registration'
 // // * submit form data and make POST API request '/registration'.
+// // * after successful registration navigates to '/login' route.
 // // * component should have a link to the Login page (see design)
 //
 // import React from 'react';
@@ -20,13 +21,13 @@
 // 		<div className={styles.container}>
 // 			<form onSubmit={handleSubmit}>
 // 				<h1>Registration</h1>
-// 				// reurse Input component for email field
+// 				// reuse Input component for email field
 //
-// 				// reurse Input component for name field
+// 				// reuse Input component for name field
 //
-// 				// reurse Input component for password field
+// 				// reuse Input component for password field
 //
-// 				// reurse Button component for 'Login' button
+// 				// reuse Button component for 'Login' button
 // 			</form>
 // 			<p>
 // 				If you have an account you may&nbsp;

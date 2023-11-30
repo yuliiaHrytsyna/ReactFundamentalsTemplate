@@ -6,6 +6,7 @@
 // // * add validation for fields: all fields are required. Show validation message. https://www.figma.com/file/m0N0SGLclqUEGR6TUNvyn9/Fundamentals-Courses?type=design&node-id=2932-191&mode=design&t=0FIG0iRzKcD0s16M-0
 // // * render this component by route '/login'
 // // * submit form data and make POST API request '/login'.
+// // * save token from API after success login to localStorage.
 // // * component should have a link to the Registration page (see design)
 
 // // Module 3.
@@ -24,11 +25,11 @@
 // 			<form onSubmit={handleSubmit}>
 // 				<h1>Login</h1>
 
-// 				// reurse Input component for email field
+// 				// reuse Input component for email field
 
-// 				// reurse Input component for password field
+// 				// reuse Input component for password field
 
-// 				// reurse Button component for 'Login' button
+// 				// reuse Button component for 'Login' button
 
 // 			</form>
 // 			<p>
