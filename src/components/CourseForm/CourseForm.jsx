@@ -33,7 +33,7 @@
 // //     * appropriate forms field should be prefilled with course's info
 // //     * user should have ability to modify course information in the fields and change authors list
 // //     * make a request to save updated course
-// //     * use 'updateCourse' service from 'src/services.js' and 'updateCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
+// //     * use 'updateCourseService' from 'src/services.js' and 'updateCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
 // //     save updated course to the store after success response.
 // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#update-course
 

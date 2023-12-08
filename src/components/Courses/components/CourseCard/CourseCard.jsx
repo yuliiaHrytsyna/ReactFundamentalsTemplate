@@ -19,7 +19,7 @@
 // Module 4.
 // * show 'delete' and 'update' buttons only for ADMIN user
 // * make delete request by 'delete' button click
-// * use 'deleteCourse' service from 'src/services.js' and 'deleteCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
+// * use 'deleteCourseService' from 'src/services.js' and 'deleteCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
 // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#coursecard-component
 
 
