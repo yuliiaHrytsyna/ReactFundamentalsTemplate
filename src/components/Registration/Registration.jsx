@@ -8,6 +8,7 @@
 // // * submit form data and make POST API request '/registration'.
 // // * after successful registration navigates to '/login' route.
 // // * component should have a link to the Login page (see design)
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#registration-new-component
 //
 // import React from 'react';
 //
