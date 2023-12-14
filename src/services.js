@@ -18,7 +18,7 @@ export const getCurrentUser = async () => {
   // write your code here
 };
 
-export const updateCourse = async () => {
+export const updateCourseService = async () => {
   // write your code here
 };
 
@@ -26,7 +26,7 @@ export const logout = async () => {
   // write your code here
 };
 
-export const deleteCourse = async () => {
+export const deleteCourseService = async () => {
   // write your code here
 };
 
