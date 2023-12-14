@@ -8,16 +8,19 @@
 //   ** duration (format: hh:mm + 'hours'). Create function 'src/helpers/getCourseDuration.js' for duration mapping;
 //   ** creation date (format: dd.mm.yyyy). Create function 'src/helpers/formatCreationDate.js' for date formatting;
 //   ** show course button. Render 'CourseInfo' component with course's data instead of 'Courses' component
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#coursecard-component
 
 // Module 3.
 // * add two new buttons: update and delete'. Use icons from 'src/assets/...'.
 // * remove course from the store by 'delete' button click
 // * no functionality for 'update' button for now
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#coursecard-component
 
 // Module 4.
 // * show 'delete' and 'update' buttons only for ADMIN user
 // * make delete request by 'delete' button click
-// * use 'deleteCourse' service from 'src/services.js' and 'deleteCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
+// * use 'deleteCourseService' from 'src/services.js' and 'deleteCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#coursecard-component
 
 
 // Module 5:

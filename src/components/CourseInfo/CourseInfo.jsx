@@ -9,12 +9,14 @@
 	// ** List of authors;
 	// ** Creation date;
 // * use <Button /> component to replace CourseInfo component with Courses component
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#course-info
 
 // Module 2.
 // * render component by route '/courses/:courseId'
 // * use 'useParam' hook to get course id, remove prop 'showCourseId'
 // * remove 'onBack' prop
 // * use '<Link />' instead <Button /> component for 'BACK' button
+// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#course-info
 
 // Module 3.
 // * remove props 'coursesList', 'authorsList'
