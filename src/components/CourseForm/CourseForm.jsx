@@ -11,12 +11,12 @@
 // //   ** user should be able to remove author from the course
 // //   ** add validation to the fields
 // //   ** add new course to the 'coursesList' and navigate to the '/courses' page => new course should be in the courses list
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#add-new-course
+// // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#add-new-course
 
 // // Module 3.
 // // * save new course to the store. Use action 'saveCourse' from 'src/store/slices/coursesSlice'
 // // * save new author to the store. Use action 'saveAuthor' from 'src/store/slices/authorsSlice'
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#add-new-course
+// // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#add-new-course
 
 // // Module 4.
 // // * render this component only for ADMIN user
@@ -27,7 +27,7 @@
 // //     * use 'createCourse' service from 'src/services.js' and 'createCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
 // //     * use 'createAuthor ' service from 'src/services.js' and 'createAuthorThunk' thunk from 'src/store/thinks/authorsThunk.js'
 // //     * save new course to the store after success response
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#add-new-course
+// // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#add-new-course
 // //   ** update mode:
 // //     * form should be opened by route '/courses/update/:courseId' route by 'update' button click
 // //     * appropriate forms field should be prefilled with course's info
@@ -35,7 +35,7 @@
 // //     * make a request to save updated course
 // //     * use 'updateCourseService' from 'src/services.js' and 'updateCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
 // //     save updated course to the store after success response.
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#update-course
+// // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#update-course
 
 // // Module 5:
 // // * proposed cases for unit tests:
