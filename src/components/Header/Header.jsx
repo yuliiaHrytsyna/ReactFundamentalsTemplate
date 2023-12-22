@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 // Module 1:
 // * add Logo and Button components

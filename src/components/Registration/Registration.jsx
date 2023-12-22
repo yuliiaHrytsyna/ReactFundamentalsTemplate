@@ -10,30 +10,27 @@
 // // * component should have a link to the Login page (see design)
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#registration-new-component
 //
-// import React from 'react';
-//
-// import styles from './styles.module.css';
-//
+// import React from "react";
+
+// import styles from "./styles.module.css";
+
 // export const Registration = () => {
-//
-// 	// write your code here
-//
-// 	return (
-// 		<div className={styles.container}>
-// 			<form onSubmit={handleSubmit}>
-// 				<h1>Registration</h1>
-// 				// reuse Input component for email field
-//
-// 				// reuse Input component for name field
-//
-// 				// reuse Input component for password field
-//
-// 				// reuse Button component for 'Login' button
-// 			</form>
-// 			<p>
-// 				If you have an account you may&nbsp;
-//        // use <Link /> component for navigation to Login page
-// 			</p>
-// 		</div>
-// 	);
+//   // write your code here
+
+//   return (
+//     <div className={styles.container}>
+//       <h1>Registration</h1>
+//       <div className={styles.formContainer}>
+//         <form onSubmit={handleSubmit}>
+//           // reuse Input component for email field 
+//           // reuse Input component for name field 
+//           // reuse Input component for password field 
+//           // reuse Button component for 'Login' button
+//         </form>
+//         <p>
+//           If you have an account you may&nbsp; // use <Link /> component for navigation to Login page
+//         </p>
+//       </div>
+//     </div>
+//   );
 // };

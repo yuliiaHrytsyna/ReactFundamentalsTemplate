@@ -22,11 +22,11 @@
 // * remove props 'coursesList', 'authorsList'
 // * use selectors from store/selectors.js to get coursesList, authorsList from store
 
-import React from 'react';
+import React from "react";
 
-import { formatCreationDate, getCourseDuration } from '../../helpers';
+import { formatCreationDate, getCourseDuration } from "../../helpers";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 
 // props description
@@ -38,10 +38,7 @@ export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => 
 	// write your code here
 
 	return (
-		<div data-testid='courseInfo'>
-			// Module 1: reuse Button component for 'onBack' functionality 
-			// Module 2: use 'react-router-dom' 'Link' component for button 'Back' and remove 'onBack' prop
-
+		<div className={styles.container} data-testid='courseInfo'>
 			<h1>Course title</h1>
 			<div className={styles.courseInfo}>
 				<p className={styles.description}>{description}</p>
@@ -52,11 +49,11 @@ export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => 
 					</p>
 					<p>
 						<b>Duration: </b>
-						duration
+						duration (use getCourseDuration)
 					</p>
 					<p>
 						<b>Created: </b>
-						creation date
+						creation date (use formatCreationDate)
 					</p>
 					<div>
 						<b>Authors</b>
@@ -66,6 +63,8 @@ export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => 
 					</div>
 				</div>
 			</div>
+			// Module 1: reuse Button component for 'onBack' functionality 
+			// Module 2: use 'react-router-dom' 'Link' component for button 'Back' and remove 'onBack' prop
 		</div>
 	);
 };

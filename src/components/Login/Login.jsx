@@ -15,30 +15,26 @@
 // // * save user's name, token and email to the store after success login.
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#login-component
 
-// import React from 'react';
+// import React from "react";
 
-// import styles from './styles.module.css';
+// import styles from "./styles.module.css";
 
 // export const Login = () => {
-	
-// 	// write your code here
+//   // write your code here
 
-// 	return (
-// 		<div className={styles.container}>
-// 			<form onSubmit={handleSubmit}>
-// 				<h1>Login</h1>
-
-// 				// reuse Input component for email field
-
-// 				// reuse Input component for password field
-
-// 				// reuse Button component for 'Login' button
-
-// 			</form>
-// 			<p>
-// 				If you don't have an account you may&nbsp;
-//        // use <Link /> component for navigation to Registration page
-// 			</p>
-// 		</div>
-// 	);
+//   return (
+//     <div className={styles.container}>
+//       <h1>Login</h1>
+//       <div className={styles.formContainer}>
+//         <form onSubmit={handleSubmit}>
+//           // reuse Input component for email field // reuse Input component for
+//           password field // reuse Button component for 'Login' button
+//         </form>
+//         <p>
+//           If you don't have an account you may&nbsp; // use <Link /> component
+//           for navigation to Registration page
+//         </p>
+//       </div>
+//     </div>
+//   );
 // };
