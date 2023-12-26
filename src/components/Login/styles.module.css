@@ -1,12 +1,23 @@
 .container {
-  max-width: 170px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+	width: 585px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
-.button {
-  margin-top: 20px;
-  width: 100%;
+.container h1 {
+	text-align: center;
+}
+
+.formContainer {
+	padding: 95px 150px 45px;
+	background-color: #fff;
+}
+
+.formContainer input,
+.formContainer button {
+	width: 100%;
+	max-width: 254px;
+	margin-bottom: 20px;
 }

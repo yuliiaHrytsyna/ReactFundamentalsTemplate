@@ -22,7 +22,6 @@
 // * use 'deleteCourseService' from 'src/services.js' and 'deleteCourseThunk' thunk from 'src/store/thinks/coursesThunk.js'
 // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#coursecard-component
 
-
 // Module 5:
 // * proposed cases for unit tests:
 //   ** CourseCard should display title.
@@ -31,41 +30,43 @@
 //   ** CourseCard should display authors list.
 //   ** CourseCard should display created date in the correct format.
 
-import React from 'react';
+import React from "react";
 
-import { getCourseDuration, formatCreationDate } from '../../../../helpers';
+import { getCourseDuration, formatCreationDate } from "../../../../helpers";
 
-export const CourseCard = ({course, handleShowCourse, authorsList}) => {
+import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
+import editIcon from "../../../../assets/editButtonIcon.svg";
 
-		// write your code here
+import styles from "./styles.module.css";
 
-	return (
-		<div className={styles.cardContainer} data-testid='courseCard'>
-			<div className={styles.cardText}>
-				<h2>Title</h2>
-				<p>Description</p>
-			</div>
-			<div className={styles.cardDetails}>
-				<p>
-					<b>Authors: </b>
-					authors list
-				</p>
-				<p>
-					<b>Duration:</b>
-					<span>duration</span>
-				</p>
-				<p>
-					<b>Created: </b>
-					<span>date</span>
-				</p>
-				<div>
+export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
+  // write your code here
 
-					// reuse Button component for 'Show course' button
-					// reuse Button component for 'Delete' button with data-testid="deleteCourse"
-					// reuse Button component for 'Update' button with data-testid="updateCourse"
-
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className={styles.cardContainer} data-testid="courseCard">
+      <div className={styles.cardText}>
+        <h2>Title</h2>
+        <p>Description</p>
+      </div>
+      <div className={styles.cardDetails}>
+        <p>
+          <b>Authors: </b>
+          authors list
+        </p>
+        <p>
+          <b>Duration:</b>
+          <span>duration</span>
+        </p>
+        <p>
+          <b>Created: </b>
+          <span>date</span>
+        </p>
+        <div className={styles.buttonsContainer}>
+          // reuse Button component for 'Show course' button 
+					// reuse Button component with deleteButtonIcon from 'src/assets' for 'Delete' button with data-testid="deleteCourse" 
+					// reuse Link component with editButtonIcon from 'src/assets' for 'Update' button with data-testid="updateCourse"
+        </div>
+      </div>
+    </div>
+  );
 };

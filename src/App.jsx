@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+
+import styles from "./App.module.css";
 
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
@@ -23,12 +25,16 @@ import React from 'react';
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
+  // write your code here
 
-	// write your code here
-
-	return (
-		<h1>App Component</h1>
-	);
+  return (
+    <div className={styles.wrapper}>
+      {/* place Header component */}
+      <div className={styles.container}>
+        {/* place other components */}
+      </div>
+    </div>
+  );
 }
 
 export default App;

@@ -9,13 +9,13 @@
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#private-route-new-component
 
 
-// import React from 'react';
+// import React from "react";
 
 // export const PrivateRoute = () => {
 
 // 	//wriet your code here
 
 // 	return (
-// 			<p>PrivateRoute</p>//wriet your code here instead of this 'p' tag
+// 			<p>PrivateRoute</p>//write your code here instead of this 'p' tag
 // 	);
 // };

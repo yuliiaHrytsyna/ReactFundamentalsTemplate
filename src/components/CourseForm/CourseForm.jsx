@@ -44,49 +44,66 @@
 // //   **  CourseForm 'Add author' button click should add an author to the course authors list.
 // //   **  CourseForm 'Delete author' button click should delete an author from the course list.
 
-// import React from 'react';
-//
-// import styles from './styles.module.css';
-//
-// export const CourseForm = ({authorsList, createCourse, createAuthor}) => {
-//
-// 	//write your code here
-//
-// 	return (
-// 		<form onSubmit={handleSubmit}>
-// 			<div>
-// 				// reuse Input component for title field with data-testid="titleInput"
-//
-// 				// reuse Button component for 'Save course' button with data-testid="createCourseButton"
-// 			</div>
-//
-// 			<label>
-// 				Description
-// 				<textarea data-testid="descriptionTextArea" />
-// 			</label>
-//
-// 			<div className={styles.infoWrapper}>
-// 				<div>
-// 					// use CreateAuthor component
-//
-// 					// reuse Input component with data-testid='durationInput' for duration field
-//
-// 					<p>Duration: </p>
-// 				</div>
-//
-// 				<div className={styles.authorsContainer}>
-// 					<strong>Authors</strong>
-//
-// 					// use 'map' to display all available autors. Reuse 'AuthorItem' component for each author
-//
-// 					<strong>Course authors</strong>
-//
-// 					// use 'map' to display course's autors
-// 					{/* <p data-testid="selectedAuthor"}>{author.name}</p> */}
-//
-// 					<p className={styles.notification}>List is empty</p> // display this paragraph if there are no authors in the course
-// 				</div>
-// 			</div>
-// 		</form>
-// 	);
+// import React from "react";
+
+// import styles from "./styles.module.css";
+
+// export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
+//   //write your code here
+
+//   return (
+//     <div className={styles.container}>
+
+//       <h2>// render title - Course edit or Create page</h2>
+
+//       <form>
+
+//         // reuse Input component for title field with data-testid="titleInput"
+
+//         <label>
+//           Description
+//           <textarea
+//             className={styles.description}
+//             data-testid="descriptionTextArea"
+//           />
+//         </label>
+
+//         <div className={styles.infoWrapper}>
+//           <div>
+
+//             <div className={styles.duration}>
+//               // reuse Input component with data-testid='durationInput' for duration field
+
+//               <p>// render duration. use getCourseDuration helper</p>
+//             </div>
+
+//             <h2>Authors</h2>
+//             // use CreateAuthor component
+
+//             <div className={styles.authorsContainer}>
+//               <h3>Authors List</h3>
+
+//               // use 'map' to display all available autors. Reuse 'AuthorItem' component for each author
+//             </div>
+
+//           </div>
+
+//           <div className={styles.courseAuthorsContainer}>
+//             <h2>Course authors</h2>
+//             // use 'map' to display course autors. Reuse 'AuthorItem' component for each author
+//             <p className={styles.notification}>List is empty</p> // display this
+//             paragraph if there are no authors in the course
+//           </div>
+
+//         </div>
+
+//       </form>
+
+//       <div className={styles.buttonsContainer}>
+//         // reuse Button component for 'CREATE/UPDATE COURSE' button with
+//         // reuse Button component for 'CANCEL' button with
+//       </div>
+
+//     </div>
+//   );
 // };
