@@ -1,5 +1,5 @@
 export const getCourseDuration = (duration) => {
-	// write your solution here
+  // write your solution here
 
-	return duration;
+  return duration;
 };

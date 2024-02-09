@@ -30,9 +30,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       {/* place Header component */}
-      <div className={styles.container}>
-        {/* place other components */}
-      </div>
+      <div className={styles.container}>{/* place other components */}</div>
     </div>
   );
 }

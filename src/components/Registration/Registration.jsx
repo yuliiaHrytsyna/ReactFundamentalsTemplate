@@ -22,9 +22,9 @@
 //       <h1>Registration</h1>
 //       <div className={styles.formContainer}>
 //         <form onSubmit={handleSubmit}>
-//           // reuse Input component for email field 
-//           // reuse Input component for name field 
-//           // reuse Input component for password field 
+//           // reuse Input component for email field
+//           // reuse Input component for name field
+//           // reuse Input component for password field
 //           // reuse Button component for 'Login' button
 //         </form>
 //         <p>

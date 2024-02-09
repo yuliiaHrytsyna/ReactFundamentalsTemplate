@@ -32,17 +32,17 @@ import styles from "./styles.module.css";
 //   ** CourseForm should be shown after a click on the "Add new course" button.
 
 export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
-	// write your code here
+  // write your code here
 
-	// for EmptyCourseList component container use data-testid="emptyContainer" attribute
-	// for button in EmptyCourseList component add data-testid="addCourse" attribute
+  // for EmptyCourseList component container use data-testid="emptyContainer" attribute
+  // for button in EmptyCourseList component add data-testid="addCourse" attribute
 
-	return (
-		<>
-			<div className={styles.panel}>
-				// reuse Button component for 'ADD NEW COURSE' button
-			</div>
-			// use '.map' array method to render all courses. Use CourseCard component
-		</>
-	);
+  return (
+    <>
+      <div className={styles.panel}>
+        // reuse Button component for 'ADD NEW COURSE' button
+      </div>
+      // use '.map' array method to render all courses. Use CourseCard component
+    </>
+  );
 };

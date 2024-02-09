@@ -32,15 +32,15 @@ import styles from "./styles.module.css";
 //   ** Header should have logo and user's name.
 
 export const Header = () => {
-	// write your code here
+  // write your code here
 
-	return (
-		<div className={styles.headerContainer}>
-			// use Logo component
-			<div className={styles.userContainer}>
-				<p className={styles.userName}>Harry Potter</p>
-				// reuse Button component for 'Login / Logout' button
-			</div>
-		</div>
-	);
+  return (
+    <div className={styles.headerContainer}>
+      // use Logo component
+      <div className={styles.userContainer}>
+        <p className={styles.userName}>Harry Potter</p>
+        // reuse Button component for 'Login / Logout' button
+      </div>
+    </div>
+  );
 };
