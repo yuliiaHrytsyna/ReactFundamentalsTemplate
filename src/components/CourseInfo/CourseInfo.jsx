@@ -27,6 +27,7 @@ import React from "react";
 import { formatCreationDate, getCourseDuration } from "../../helpers";
 
 import styles from "./styles.module.css";
+import { Button } from "../../common";
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
@@ -38,37 +39,44 @@ export const CourseInfo = ({
   onBack,
   showCourseId,
 }) => {
-  // write your code here
+  const course = coursesList.find((item) => item.id === showCourseId);
+  const authors = [];
+  authorsList.forEach(
+    (author) => course.authors.includes(author.id) && authors.push(author.name)
+  );
 
   return (
     <div className={styles.container} data-testid="courseInfo">
-      <h1>Course title</h1>
+      <h1>{course.title}</h1>
       <div className={styles.courseInfo}>
-        <p className={styles.description}>Course description</p>
+        <p className={styles.description}>{course.description}</p>
         <div>
           <p>
             <b>ID: </b>
-            id
+            {course.id}
           </p>
           <p>
             <b>Duration: </b>
-            duration (use getCourseDuration)
+            {getCourseDuration(course.duration)}
           </p>
           <p>
             <b>Created: </b>
-            creation date (use formatCreationDate)
+            {formatCreationDate(course.creationDate)}
           </p>
           <div>
             <b>Authors</b>
             <ul className={styles.authorsList}>
-              //use '.map' to render authors list with 'li' tag
+              {authors.map((author, i) => (
+                <li key={i}>{author.name}</li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
-      // Module 1: reuse Button component for 'onBack' functionality // Module
+      <Button buttonText={"BACK"} handleClick={() => onBack(null)} />
+      {/* // Module 1: reuse Button component for 'onBack' functionality // Module
       2: use 'react-router-dom' 'Link' component for button 'Back' and remove
-      'onBack' prop
+      'onBack' prop */}
     </div>
   );
 };

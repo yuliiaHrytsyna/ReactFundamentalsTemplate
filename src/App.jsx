@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./App.module.css";
 
+import { Header, Courses, CourseInfo } from "./components";
+
+import { mockedCoursesList, mockedAuthorsList } from "./constants";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -26,11 +29,31 @@ import styles from "./App.module.css";
 
 function App() {
   // write your code here
+  const [courseId, setCourseId] = useState(null);
+  const handleShowCourse = (value) => {
+    setCourseId(value);
+  };
 
   return (
     <div className={styles.wrapper}>
       {/* place Header component */}
-      <div className={styles.container}>{/* place other components */}</div>
+      <Header />
+      <div className={styles.container}>
+        {courseId ? (
+          <CourseInfo
+            coursesList={mockedCoursesList}
+            authorsList={mockedAuthorsList}
+            showCourseId={courseId}
+            onBack={(value) => handleShowCourse(value)}
+          />
+        ) : (
+          <Courses
+            coursesList={mockedCoursesList}
+            authorsList={mockedAuthorsList}
+            handleShowCourse={(value) => handleShowCourse(value)}
+          />
+        )}
+      </div>
     </div>
   );
 }
