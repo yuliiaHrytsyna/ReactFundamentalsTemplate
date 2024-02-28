@@ -5,7 +5,7 @@ export const getCourseDuration = (duration) => {
   const minutes = duration % 60;
 
   duration = `${getTwoDigitsValue(hours)}:${getTwoDigitsValue(minutes)} hour${
-    hours !== 1 && "s"
+    hours !== 1 ? "s" : ""
   }`;
 
   return duration;

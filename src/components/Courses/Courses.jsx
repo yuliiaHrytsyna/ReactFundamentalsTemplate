@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 
 import { Button } from "../../common";
 import { CourseCard } from "./components/CourseCard/CourseCard";
+import { EmptyCourseList } from "./components";
 
 // Module 1:
 // * render list of components using 'CourseCard' component for each course
@@ -35,7 +36,19 @@ import { CourseCard } from "./components/CourseCard/CourseCard";
 //   ** CourseForm should be shown after a click on the "Add new course" button.
 
 export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
-  // write your code here
+  let content;
+  if (!!coursesList.length) {
+    content = coursesList.map((course) => (
+      <CourseCard
+        key={course.id}
+        course={course}
+        authorsList={authorsList}
+        handleShowCourse={(value) => handleShowCourse(value)}
+      />
+    ));
+  } else {
+    content = <EmptyCourseList />;
+  }
 
   // for EmptyCourseList component container use data-testid="emptyContainer" attribute
   // for button in EmptyCourseList component add data-testid="addCourse" attribute
@@ -45,14 +58,7 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
       <div className={styles.panel}>
         <Button buttonText={"ADD NEW COURSE"} />
       </div>
-      {coursesList.map((course) => (
-        <CourseCard
-          key={course.id}
-          course={course}
-          authorsList={authorsList}
-          handleShowCourse={(value) => handleShowCourse(value)}
-        />
-      ))}
+      {content}
       {/* // use '.map' array method to render all courses. Use CourseCard component */}
     </>
   );

@@ -40,10 +40,10 @@ export const CourseInfo = ({
   showCourseId,
 }) => {
   const course = coursesList.find((item) => item.id === showCourseId);
-  const authors = [];
-  authorsList.forEach(
-    (author) => course.authors.includes(author.id) && authors.push(author.name)
-  );
+
+  const authors = authorsList
+    .filter((author) => course.authors.includes(author.id))
+    .map((item) => item.name);
 
   return (
     <div className={styles.container} data-testid="courseInfo">
@@ -67,7 +67,7 @@ export const CourseInfo = ({
             <b>Authors</b>
             <ul className={styles.authorsList}>
               {authors.map((author, i) => (
-                <li key={i}>{author.name}</li>
+                <li key={i}>{author}</li>
               ))}
             </ul>
           </div>

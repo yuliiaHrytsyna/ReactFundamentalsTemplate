@@ -48,7 +48,7 @@ function App() {
           />
         ) : (
           <Courses
-            coursesList={mockedCoursesList}
+            coursesList={[]}
             authorsList={mockedAuthorsList}
             handleShowCourse={(value) => handleShowCourse(value)}
           />
