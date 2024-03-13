@@ -100,7 +100,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
               {mockedAuthorsList.map((author) => (
-                <AuthorItem authorName={author.name} key={author.id} />
+                <AuthorItem key={author.id} />
               ))}
               {/* // use 'map' to display all available autors. Reuse 'AuthorItem' component for each author */}
             </div>
