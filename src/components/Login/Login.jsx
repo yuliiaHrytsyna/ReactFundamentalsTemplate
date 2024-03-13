@@ -15,26 +15,59 @@
 // // * save user's name, token and email to the store after success login.
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#login-component
 
-// import React from "react";
+import React from "react";
 
-// import styles from "./styles.module.css";
+import { Link, useNavigate } from "react-router-dom";
 
-// export const Login = () => {
-//   // write your code here
+import { Input } from "../../common/Input/Input";
+import { Button } from "../../common/Button/Button";
 
-//   return (
-//     <div className={styles.container}>
-//       <h1>Login</h1>
-//       <div className={styles.formContainer}>
-//         <form onSubmit={handleSubmit}>
-//           // reuse Input component for email field // reuse Input component for
-//           password field // reuse Button component for 'Login' button
-//         </form>
-//         <p>
-//           If you don't have an account you may&nbsp; // use <Link /> component
-//           for navigation to Registration page
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
+import styles from "./styles.module.css";
+
+import { login } from "../../services";
+
+export const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const data = {
+      email: target.email.value,
+      password: target.password.value,
+    };
+
+    const result = await login(data);
+    if (result.successful) {
+      localStorage.setItem("token", result.result);
+      return navigate("/courses");
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1>Login</h1>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit}>
+          <Input
+            labelText={"Email"}
+            placeholderText={"Input text"}
+            name={"email"}
+            type={"email"}
+          />
+          <Input
+            labelText={"Password"}
+            placeholderText={"Input text"}
+            name={"password"}
+            type={"password"}
+          />
+          <Button buttonText={"LOGIN"} handleSubmit={handleSubmit} />
+        </form>
+        <p>
+          If you don't have an account you may
+          <Link to={"/registration"}>Registration</Link>
+        </p>
+      </div>
+    </div>
+  );
+};

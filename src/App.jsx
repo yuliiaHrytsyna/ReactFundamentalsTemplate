@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 import styles from "./App.module.css";
 
-import { Header, Courses, CourseInfo } from "./components";
+import { Header } from "./components";
 
-import { mockedCoursesList, mockedAuthorsList } from "./constants";
+import { Outlet, useNavigate } from "react-router-dom";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -28,32 +28,21 @@ import { mockedCoursesList, mockedAuthorsList } from "./constants";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
-  // write your code here
-  const [courseId, setCourseId] = useState(null);
-  const handleShowCourse = (value) => {
-    setCourseId(value);
-  };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/courses");
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className={styles.wrapper}>
-      {/* place Header component */}
       <Header />
-      <div className={styles.container}>
-        {courseId ? (
-          <CourseInfo
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            showCourseId={courseId}
-            onBack={(value) => handleShowCourse(value)}
-          />
-        ) : (
-          <Courses
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            handleShowCourse={(value) => handleShowCourse(value)}
-          />
-        )}
-      </div>
+      <Outlet />
     </div>
   );
 }

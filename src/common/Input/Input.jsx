@@ -9,6 +9,9 @@ export const Input = ({
   placeholderText,
   labelText,
   onChange,
+  name,
+  type,
+  isRequired = true,
   "data-testid": dataTestId,
 }) => (
   <label className={styles.label}>
@@ -18,6 +21,9 @@ export const Input = ({
       placeholder={placeholderText}
       className={styles.input}
       data-testid={dataTestId}
+      name={name}
+      required={isRequired}
+      type={type}
     />
   </label>
 );

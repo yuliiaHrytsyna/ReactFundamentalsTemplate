@@ -4,6 +4,8 @@ import styles from "./styles.module.css";
 import { Logo } from "./components";
 import { Button } from "../../common";
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 // Module 1:
 // * add Logo and Button components
 // * add Header component to the App component
@@ -35,14 +37,26 @@ import { Button } from "../../common";
 
 export const Header = () => {
   // write your code here
+  const loginPaths = ["/registration", "/login"];
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const logOut = () => {
+    localStorage.setItem("token", null);
+    navigate("/login");
+  };
 
   return (
     <div className={styles.headerContainer}>
       <Logo />
-      <div className={styles.userContainer}>
-        <p className={styles.userName}></p>
-        <Button buttonText={"LOGIN"} />
-      </div>
+      {loginPaths.indexOf(location.pathname) === -1 ? (
+        <div className={styles.userContainer}>
+          <p className={styles.userName}></p>
+          <Button buttonText={"LOGOUT"} handleClick={logOut} />
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
