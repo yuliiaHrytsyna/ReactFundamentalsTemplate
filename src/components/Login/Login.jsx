@@ -38,7 +38,7 @@ export const Login = () => {
     };
 
     const result = await login(data);
-    if (result.successful) {
+    if (result?.successful) {
       localStorage.setItem("token", result.result);
       return navigate("/courses");
     }
