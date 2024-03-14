@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./styles.module.css";
 
@@ -42,6 +42,13 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
   const authorsList1 = mockedAuthorsList;
   const navigate = useNavigate();
   const { courseId } = useParams();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+      console.log(localStorage.getItem("token"));
+    }
+  }, [navigate]);
 
   const openInfo = (value) => {
     navigate(`/courses/${value}`);

@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import styles from "./App.module.css";
 
-import { Header } from "./components";
+import {
+  Header,
+  Login,
+  Registration,
+  Courses,
+  CourseInfo,
+  CourseForm,
+} from "./components";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -28,21 +35,18 @@ import { Outlet, useNavigate } from "react-router-dom";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = !!localStorage.getItem("token");
-    if (token) {
-      navigate("/courses");
-    } else {
-      navigate("/login");
-    }
-  }, [navigate]);
-
   return (
     <div className={styles.wrapper}>
       <Header />
-      <Outlet />
+      <Routes>
+        <Route path="/" element={<Navigate to="/courses" />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/courses" element={<Courses />}>
+          <Route path=":courseId" element={<CourseInfo />} />
+          <Route path="add" element={<CourseForm />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
