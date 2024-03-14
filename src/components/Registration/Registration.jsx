@@ -10,7 +10,7 @@
 // * component should have a link to the Login page (see design)
 // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-2/home-task/components#registration-new-component
 
-import React from "react";
+import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../common/Input/Input";
@@ -21,15 +21,29 @@ import styles from "./styles.module.css";
 import { createUser } from "../../services";
 
 export const Registration = () => {
+  const [nameValue, setNameValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const navigate = useNavigate();
+
+  const handleEmailChange = (event) => {
+    setEmailValue(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPasswordValue(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setNameValue(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const target = e.target;
     const formData = {
-      name: target.name.value,
-      email: target.email.value,
-      password: target.password.value,
+      name: nameValue,
+      email: emailValue,
+      password: passwordValue,
     };
     const result = await createUser(formData);
     if (result.successful) {
@@ -47,18 +61,24 @@ export const Registration = () => {
             placeholderText={"Input text"}
             name={"name"}
             type={"text"}
+            value={nameValue}
+            onChange={(e) => handleNameChange(e)}
           />
           <Input
             labelText={"Email"}
             placeholderText={"Input text"}
             name={"email"}
             type={"email"}
+            value={emailValue}
+            onChange={(e) => handleEmailChange(e)}
           />
           <Input
             labelText={"Password"}
             placeholderText={"Input text"}
             name={"password"}
             type={"password"}
+            value={passwordValue}
+            onChange={(e) => handlePasswordChange(e)}
           />
           <Button buttonText={"LOGIN"} handleSubmit={handleSubmit} />
         </form>

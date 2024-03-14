@@ -15,7 +15,7 @@
 // // * save user's name, token and email to the store after success login.
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#login-component
 
-import React from "react";
+import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -27,21 +27,28 @@ import styles from "./styles.module.css";
 import { login } from "../../services";
 
 export const Login = () => {
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const navigate = useNavigate();
+
+  const handleEmailChange = (event) => {
+    setEmailValue(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPasswordValue(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const target = e.target;
     const data = {
-      email: target.email.value,
-      password: target.password.value,
+      email: emailValue,
+      password: passwordValue,
     };
 
     const result = await login(data);
-    if (result?.successful) {
-      localStorage.setItem("token", result.result);
-      return navigate("/courses");
-    }
+    localStorage.setItem("token", result.result);
+    return navigate("/courses");
   };
 
   return (
@@ -54,12 +61,16 @@ export const Login = () => {
             placeholderText={"Input text"}
             name={"email"}
             type={"email"}
+            value={emailValue}
+            onChange={(e) => handleEmailChange(e)}
           />
           <Input
             labelText={"Password"}
             placeholderText={"Input text"}
             name={"password"}
             type={"password"}
+            value={passwordValue}
+            onChange={(e) => handlePasswordChange(e)}
           />
           <Button buttonText={"LOGIN"} handleSubmit={handleSubmit} />
         </form>

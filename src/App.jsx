@@ -31,7 +31,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = !!localStorage.getItem("token");
     if (token) {
       navigate("/courses");
     } else {
