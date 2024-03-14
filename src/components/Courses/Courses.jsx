@@ -75,7 +75,11 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
   const cardList = (
     <>
       <div className={styles.panel}>
-        <Button buttonText={"ADD NEW COURSE"} handleClick={addNew} />
+        <Button
+          buttonText={"ADD NEW COURSE"}
+          handleClick={addNew}
+          data-testid="createCourseButton"
+        />
       </div>
       {content}
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./App.module.css";
 
@@ -35,11 +35,16 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
+  const [element, setElement] = useState("/login");
+  useEffect(() => {
+    const hasToken = !!localStorage.getItem("token");
+    setElement(hasToken ? <Navigate to="/courses" /> : <Login />);
+  }, []);
   return (
     <div className={styles.wrapper}>
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate to="/courses" />} />
+        <Route path="/" element={element} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/courses" element={<Courses />}>

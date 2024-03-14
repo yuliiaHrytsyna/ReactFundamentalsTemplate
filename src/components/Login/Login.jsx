@@ -75,8 +75,8 @@ export const Login = () => {
           <Button buttonText={"LOGIN"} handleSubmit={handleSubmit} />
         </form>
         <p>
-          If you don't have an account you may
-          <Link to={"/registration"}> Registration</Link>
+          If you don't have an account you can
+          <Link to={"/registration"}>Registration</Link>
         </p>
       </div>
     </div>

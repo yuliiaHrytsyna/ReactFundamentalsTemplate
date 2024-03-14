@@ -42,7 +42,7 @@ export const Header = () => {
   const location = useLocation();
 
   const logOut = () => {
-    localStorage.setItem("token", null);
+    localStorage.removeItem("token");
     navigate("/login");
   };
 

@@ -121,7 +121,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
           buttonText={"CANCEL"}
           handleClick={() => navigate("/courses")}
         />
-        <Button buttonText={"CREATE/UPDATE COURSE"} />
+        <Button buttonText={"CREATE COURSE"} />
         {/* // reuse Button component for 'CREATE/UPDATE COURSE' button with
         // reuse Button component for 'CANCEL' button with */}
       </div>

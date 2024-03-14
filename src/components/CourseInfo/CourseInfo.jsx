@@ -22,7 +22,7 @@
 // * remove props 'coursesList', 'authorsList'
 // * use selectors from store/selectors.js to get coursesList, authorsList from store
 
-import React from "react";
+import React, { useState } from "react";
 
 import { formatCreationDate, getCourseDuration } from "../../helpers";
 
@@ -40,11 +40,21 @@ export const CourseInfo = ({ coursesList, authorsList }) => {
   const { courseId } = useParams();
   const coursesList1 = mockedCoursesList;
   const authorsList1 = mockedAuthorsList;
-  const course = coursesList1.find((item) => item.id === courseId);
+  const [course, setCourse] = useState(
+    coursesList1.find((item) => item.id === courseId)
+  );
+  const [authors, setAuthors] = useState(
+    authorsList1
+      .filter((author) => course.authors.includes(author.id))
+      .map((item) => item.name)
+  );
 
-  const authors = authorsList1
-    .filter((author) => course.authors.includes(author.id))
-    .map((item) => item.name);
+  setCourse(coursesList1.find((item) => item.id === courseId));
+  setAuthors(
+    authorsList1
+      .filter((author) => course.authors.includes(author.id))
+      .map((item) => item.name)
+  );
 
   return (
     <div className={styles.container} data-testid="courseInfo">
