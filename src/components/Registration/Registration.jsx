@@ -45,10 +45,8 @@ export const Registration = () => {
       email: emailValue,
       password: passwordValue,
     };
-    const result = await createUser(formData);
-    if (result.successful) {
-      return navigate("/login");
-    }
+    await createUser(formData);
+    return navigate("/login");
   };
 
   return (
