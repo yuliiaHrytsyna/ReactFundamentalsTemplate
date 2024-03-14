@@ -49,7 +49,8 @@ export const Header = () => {
   return (
     <div className={styles.headerContainer}>
       <Logo />
-      {loginPaths.indexOf(location.pathname) === -1 ? (
+      {loginPaths.indexOf(location.pathname) === -1 &&
+      localStorage.getItem("token") ? (
         <div className={styles.userContainer}>
           <p className={styles.userName}></p>
           <Button buttonText={"LOGOUT"} handleClick={logOut} />
