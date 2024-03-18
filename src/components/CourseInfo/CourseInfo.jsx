@@ -28,20 +28,22 @@ import { formatCreationDate, getCourseDuration } from "../../helpers";
 
 import styles from "./styles.module.css";
 
-import { mockedCoursesList, mockedAuthorsList } from "../../constants";
-
 import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCoursesSelector, getAuthorsSelector } from "../../store/selectors";
+import { Button } from "../../common/Button/Button";
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
 // * 'authorsList' - list of all authors. You need it to get authors' names for chosen course
 // * 'showCourseId' - id of chosen course. Use it to find needed course on the 'coursesList'.
-export const CourseInfo = ({ coursesList, authorsList }) => {
+export const CourseInfo = () => {
   const { courseId } = useParams();
-  const coursesList1 = mockedCoursesList;
-  const authorsList1 = mockedAuthorsList;
-  const course = coursesList1.find((item) => item.id === courseId);
-  const authors = authorsList1
+  const coursesList = useSelector(getCoursesSelector);
+  const authorsList = useSelector(getAuthorsSelector);
+
+  const course = coursesList.find((item) => item.id === courseId);
+  const authors = authorsList
     .filter((author) => course.authors.includes(author.id))
     .map((item) => item.name);
 
@@ -73,9 +75,7 @@ export const CourseInfo = ({ coursesList, authorsList }) => {
           </div>
         </div>
       </div>
-      <Link to="/courses" className={styles.button}>
-        BACK
-      </Link>
+      <Button role="link" buttonText={<Link to="/courses">Back</Link>} />
     </div>
   );
 };

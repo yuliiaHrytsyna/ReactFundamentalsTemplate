@@ -11,8 +11,8 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // setUserData:
-    // removeUserData:
+    setUserData: (state, { payload }) => (state = payload),
+    removeUserData: (state) => (state = initialState),
   },
 });
 

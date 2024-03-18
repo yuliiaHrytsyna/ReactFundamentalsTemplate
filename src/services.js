@@ -30,11 +30,27 @@ export const login = async (data) => {
 };
 
 export const getCourses = async () => {
-  // write your code here
+  const url = "http://localhost:4000/courses/all";
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
 };
 
 export const getAuthors = async () => {
-  // write your code here
+  const url = "http://localhost:4000/authors/all";
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
 };
 
 export const getCurrentUser = async () => {

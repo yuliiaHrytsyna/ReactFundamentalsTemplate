@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 
 import { Input } from "../../../../common/Input/Input";
 import { Button } from "../../../../common";
+import { useDispatch } from "react-redux";
+import { saveAuthor } from "../../../../store/slices/authorsSlice";
 
 export const CreateAuthor = ({ onCreateAuthor }) => {
-  // write your code here
+  const dispatch = useDispatch();
+  const [name, setName] = useState();
+
+  const addAuthor = (e) => {
+    e.preventDefault();
+    dispatch(saveAuthor({ name, id: `${name}_id` }));
+  };
   return (
     <div className={styles.newAuthorContainer}>
       {/* <h2>Add author</h2> */}
@@ -15,8 +23,14 @@ export const CreateAuthor = ({ onCreateAuthor }) => {
         name={"authorName"}
         type={"text"}
         data-testid={"createAuthorInput"}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
-      <Button buttonText={"CREATE AUTHOR"} data-testid={"createAuthorButton"} />
+      <Button
+        buttonText={"CREATE AUTHOR"}
+        data-testid={"createAuthorButton"}
+        handleClick={addAuthor}
+      />
       {/* // reuse Input component with data-testid="createAuthorInput" attribute
       //reuse Button component with data-testid="createAuthorButton" attribute */}
     </div>
