@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./styles.module.css";
 
@@ -6,6 +6,8 @@ import { Button } from "../../common";
 import { CourseCard } from "./components/CourseCard/CourseCard";
 import { EmptyCourseList } from "./components";
 
+import { mockedCoursesList, mockedAuthorsList } from "../../constants";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 // Module 1:
 // * render list of components using 'CourseCard' component for each course
 // * render 'ADD NEW COURSE' button (reuse Button component)
@@ -36,30 +38,62 @@ import { EmptyCourseList } from "./components";
 //   ** CourseForm should be shown after a click on the "Add new course" button.
 
 export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
+  const coursesList1 = mockedCoursesList;
+  const authorsList1 = mockedAuthorsList;
+  const navigate = useNavigate();
+  const { courseId } = useParams();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+      console.log(localStorage.getItem("token"));
+    }
+  }, [navigate]);
+
+  const openInfo = (value) => {
+    navigate(`/courses/${value}`);
+  };
+
+  const addNew = () => {
+    navigate(`/courses/add`);
+  };
+
   let content;
-  if (!!coursesList.length) {
-    content = coursesList.map((course) => (
+  if (!!coursesList1.length) {
+    content = coursesList1.map((course) => (
       <CourseCard
         key={course.id}
         course={course}
-        authorsList={authorsList}
-        handleShowCourse={(value) => handleShowCourse(value)}
+        authorsList={authorsList1}
+        handleShowCourse={(value) => openInfo(value)}
       />
     ));
   } else {
     content = <EmptyCourseList />;
   }
 
-  // for EmptyCourseList component container use data-testid="emptyContainer" attribute
-  // for button in EmptyCourseList component add data-testid="addCourse" attribute
+  const cardList = (
+    <>
+      <div className={styles.panel}>
+        <Button
+          buttonText={"ADD NEW COURSE"}
+          handleClick={addNew}
+          data-testid="createCourseButton"
+        />
+      </div>
+      {content}
+    </>
+  );
 
   return (
     <>
-      <div className={styles.panel}>
-        <Button buttonText={"ADD NEW COURSE"} />
+      <div className={styles.container}>
+        {!courseId && window.location.pathname.indexOf("/add") === -1 ? (
+          cardList
+        ) : (
+          <Outlet />
+        )}
       </div>
-      {content}
-      {/* // use '.map' array method to render all courses. Use CourseCard component */}
     </>
   );
 };

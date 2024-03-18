@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./App.module.css";
 
-import { Header, Courses, CourseInfo } from "./components";
+import {
+  Header,
+  Login,
+  Registration,
+  Courses,
+  CourseInfo,
+  CourseForm,
+} from "./components";
 
-import { mockedCoursesList, mockedAuthorsList } from "./constants";
+import { Routes, Route, Navigate } from "react-router-dom";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -28,32 +35,23 @@ import { mockedCoursesList, mockedAuthorsList } from "./constants";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
-  // write your code here
-  const [courseId, setCourseId] = useState(null);
-  const handleShowCourse = (value) => {
-    setCourseId(value);
-  };
-
+  const [element, setElement] = useState("/login");
+  useEffect(() => {
+    const hasToken = !!localStorage.getItem("token");
+    setElement(hasToken ? <Navigate to="/courses" /> : <Login />);
+  }, []);
   return (
     <div className={styles.wrapper}>
-      {/* place Header component */}
       <Header />
-      <div className={styles.container}>
-        {courseId ? (
-          <CourseInfo
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            showCourseId={courseId}
-            onBack={(value) => handleShowCourse(value)}
-          />
-        ) : (
-          <Courses
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            handleShowCourse={(value) => handleShowCourse(value)}
-          />
-        )}
-      </div>
+      <Routes>
+        <Route path="/" element={element} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/courses" element={<Courses />}>
+          <Route path=":courseId" element={<CourseInfo />} />
+          <Route path="add" element={<CourseForm />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -15,26 +15,70 @@
 // // * save user's name, token and email to the store after success login.
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-3/home-task/components#login-component
 
-// import React from "react";
+import React, { useState } from "react";
 
-// import styles from "./styles.module.css";
+import { Link, useNavigate } from "react-router-dom";
 
-// export const Login = () => {
-//   // write your code here
+import { Input } from "../../common/Input/Input";
+import { Button } from "../../common/Button/Button";
 
-//   return (
-//     <div className={styles.container}>
-//       <h1>Login</h1>
-//       <div className={styles.formContainer}>
-//         <form onSubmit={handleSubmit}>
-//           // reuse Input component for email field // reuse Input component for
-//           password field // reuse Button component for 'Login' button
-//         </form>
-//         <p>
-//           If you don't have an account you may&nbsp; // use <Link /> component
-//           for navigation to Registration page
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
+import styles from "./styles.module.css";
+
+import { login } from "../../services";
+
+export const Login = () => {
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const navigate = useNavigate();
+
+  const handleEmailChange = (event) => {
+    setEmailValue(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPasswordValue(event.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailValue,
+      password: passwordValue,
+    };
+
+    const result = await login(data);
+    localStorage.setItem("token", result.result);
+    return navigate("/courses");
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1>Login</h1>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit}>
+          <Input
+            labelText={"Email"}
+            placeholderText={"Input text"}
+            name={"email"}
+            type={"email"}
+            value={emailValue}
+            onChange={(e) => handleEmailChange(e)}
+          />
+          <Input
+            labelText={"Password"}
+            placeholderText={"Input text"}
+            name={"password"}
+            type={"password"}
+            value={passwordValue}
+            onChange={(e) => handlePasswordChange(e)}
+          />
+          <Button buttonText={"LOGIN"} handleSubmit={handleSubmit} />
+        </form>
+        <p>
+          If you don't have an account you can
+          <Link to={"/registration"}>Registration</Link>
+        </p>
+      </div>
+    </div>
+  );
+};

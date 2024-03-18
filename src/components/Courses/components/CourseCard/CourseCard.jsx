@@ -66,13 +66,6 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
           <span>{formatCreationDate(course.creationDate)}</span>
         </p>
         <div className={styles.buttonsContainer}>
-          {/* 
-				reuse Button component for 'Show course' button 
-				reuse Button	component with deleteButtonIcon from 'src/assets' for 'Delete' button
-						with data-testid="deleteCourse" 
-				reuse Link component with editButtonIcon from 'src/assets' for 'Update' button with
-						data-testid="updateCourse" 
-			*/}
           <Button
             handleClick={() => handleShowCourse(course.id)}
             buttonText={"SHOW COURSE"}
