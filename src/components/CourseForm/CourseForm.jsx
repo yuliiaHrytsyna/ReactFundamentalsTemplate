@@ -122,6 +122,7 @@ export const CourseForm = () => {
                 type={"number"}
                 value={duration}
                 onChange={(e) => handleDurationChange(e.target.value)}
+                data-testid="durationInput"
               />
               <p>{durationMapped}</p>
             </div>
