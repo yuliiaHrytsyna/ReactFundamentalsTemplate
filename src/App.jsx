@@ -12,6 +12,10 @@ import {
 } from "./components";
 
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getCourses, getAuthors } from "./services";
+import { setCourses } from "./store/slices/coursesSlice";
+import { setAuthors } from "./store/slices/authorsSlice";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -35,11 +39,22 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
+  const dispatch = useDispatch();
   const [element, setElement] = useState("/login");
   useEffect(() => {
     const hasToken = !!localStorage.getItem("token");
     setElement(hasToken ? <Navigate to="/courses" /> : <Login />);
   }, []);
+
+  const fetchInitialData = async () => {
+    const courses = await getCourses();
+    dispatch(setCourses(courses.result));
+    const authors = await getAuthors();
+    dispatch(setAuthors(authors.result));
+  };
+  useEffect(() => {
+    fetchInitialData();
+  });
   return (
     <div className={styles.wrapper}>
       <Header />

@@ -6,8 +6,9 @@ import { Button } from "../../common";
 import { CourseCard } from "./components/CourseCard/CourseCard";
 import { EmptyCourseList } from "./components";
 
-import { mockedCoursesList, mockedAuthorsList } from "../../constants";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getAuthorsSelector, getCoursesSelector } from "../../store/selectors";
 // Module 1:
 // * render list of components using 'CourseCard' component for each course
 // * render 'ADD NEW COURSE' button (reuse Button component)
@@ -37,16 +38,16 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 //   ** Courses should display amount of CourseCard equal length of courses array.
 //   ** CourseForm should be shown after a click on the "Add new course" button.
 
-export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
-  const coursesList1 = mockedCoursesList;
-  const authorsList1 = mockedAuthorsList;
+export const Courses = ({ handleShowCourse }) => {
   const navigate = useNavigate();
   const { courseId } = useParams();
+
+  const coursesList = useSelector(getCoursesSelector);
+  const authorsList = useSelector(getAuthorsSelector);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
-      console.log(localStorage.getItem("token"));
     }
   }, [navigate]);
 
@@ -59,12 +60,12 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
   };
 
   let content;
-  if (!!coursesList1.length) {
-    content = coursesList1.map((course) => (
+  if (!!coursesList.length) {
+    content = coursesList.map((course) => (
       <CourseCard
         key={course.id}
         course={course}
-        authorsList={authorsList1}
+        authorsList={authorsList}
         handleShowCourse={(value) => openInfo(value)}
       />
     ));

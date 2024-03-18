@@ -34,17 +34,22 @@ import React from "react";
 
 import { getCourseDuration, formatCreationDate } from "../../../../helpers";
 
-// import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
-// import editIcon from "../../../../assets/editButtonIcon.svg";
+import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
+import editIcon from "../../../../assets/editButtonIcon.svg";
 
 import styles from "./styles.module.css";
 import { Button } from "../../../../common";
+import { useDispatch } from "react-redux";
+import { deleteCourse } from "../../../../store/slices/coursesSlice";
 
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
+  const dispatch = useDispatch();
   const authors = [];
   authorsList.forEach(
     (author) => course.authors.includes(author.id) && authors.push(author.name)
   );
+
+  const handleDeleteCourse = (id) => dispatch(deleteCourse(id));
 
   return (
     <div className={styles.cardContainer} data-testid="courseCard">
@@ -70,6 +75,11 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
             handleClick={() => handleShowCourse(course.id)}
             buttonText={"SHOW COURSE"}
           />
+          <Button
+            handleClick={() => handleDeleteCourse(course.id)}
+            buttonText={<img src={deleteIcon} alt="delete" />}
+          />
+          <Button buttonText={<img src={editIcon} alt="edit" />} />
         </div>
       </div>
     </div>

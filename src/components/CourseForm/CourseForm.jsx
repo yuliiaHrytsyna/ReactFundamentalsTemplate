@@ -54,31 +54,64 @@ import { AuthorItem } from "./components/AuthorItem/AuthorItem";
 
 import { getCourseDuration } from "../../helpers/getCourseDuration";
 
-import { mockedAuthorsList } from "../../constants";
 import { Button } from "../../common";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthorsSelector } from "../../store/selectors";
+import { saveCourse } from "../../store/slices/coursesSlice";
+// { authorsList, createCourse, createAuthor }
 
-export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
-  const [duration, setDuration] = useState(0);
+export const CourseForm = () => {
+  const [durationMapped, setDurationMapped] = useState(0);
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [duration, setDuration] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authorsList = useSelector(getAuthorsSelector);
+
+  const handleDurationChange = (value) => {
+    setDurationMapped(getCourseDuration(value));
+    setDuration(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const date = new Date();
+    const creationDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    const saveRequest = {
+      title,
+      description,
+      duration,
+      authors: [],
+      creationDate,
+      id: `${title}_id`,
+    };
+    dispatch(saveCourse(saveRequest));
+    navigate("/courses");
+  };
 
   return (
     <div className={styles.container}>
       <h2>Course edit or Create page</h2>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* // reuse Input component for title field with data-testid="titleInput" */}
         <Input
           labelText={"Title"}
           placeholderText={"Input text"}
           name={"title"}
           type={"text"}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <label>
           Description
           <textarea
             className={styles.description}
             data-testid="descriptionTextArea"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </label>
 
@@ -90,17 +123,18 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
                 placeholderText={"Input text"}
                 name={"duration"}
                 type={"number"}
-                onChange={(e) => setDuration(getCourseDuration(e.target.value))}
+                value={duration}
+                onChange={(e) => handleDurationChange(e.target.value)}
               />
-              <p>{duration}</p>
+              <p>{durationMapped}</p>
             </div>
 
             <h2>Authors</h2>
             <CreateAuthor />
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
-              {mockedAuthorsList.map((author) => (
-                <AuthorItem key={author.id} />
+              {authorsList.map((author) => (
+                <AuthorItem name={author.name} key={author.id} />
               ))}
               {/* // use 'map' to display all available autors. Reuse 'AuthorItem' component for each author */}
             </div>
@@ -121,7 +155,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
           buttonText={"CANCEL"}
           handleClick={() => navigate("/courses")}
         />
-        <Button buttonText={"CREATE COURSE"} />
+        <Button buttonText={"CREATE COURSE"} handleClick={handleSubmit} />
         {/* // reuse Button component for 'CREATE/UPDATE COURSE' button with
         // reuse Button component for 'CANCEL' button with */}
       </div>
