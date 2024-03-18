@@ -77,15 +77,11 @@ export const CourseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const date = new Date();
-    const creationDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
     const saveRequest = {
       title,
       description,
       duration,
       authors: [],
-      creationDate,
-      id: `${title}_id`,
     };
     dispatch(saveCourse(saveRequest));
     navigate("/courses");
@@ -133,8 +129,8 @@ export const CourseForm = () => {
             <CreateAuthor />
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
-              {authorsList.map((author) => (
-                <AuthorItem name={author.name} key={author.id} />
+              {authorsList.map((author, i) => (
+                <AuthorItem name={author.name} key={i} />
               ))}
               {/* // use 'map' to display all available autors. Reuse 'AuthorItem' component for each author */}
             </div>
@@ -155,7 +151,11 @@ export const CourseForm = () => {
           buttonText={"CANCEL"}
           handleClick={() => navigate("/courses")}
         />
-        <Button buttonText={"CREATE COURSE"} handleClick={handleSubmit} />
+        <Button
+          buttonText={"CREATE COURSE"}
+          handleClick={handleSubmit}
+          data-testid="createCourseButton"
+        />
         {/* // reuse Button component for 'CREATE/UPDATE COURSE' button with
         // reuse Button component for 'CANCEL' button with */}
       </div>

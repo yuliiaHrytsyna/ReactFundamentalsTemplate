@@ -45,7 +45,7 @@ import { deleteCourse } from "../../../../store/slices/coursesSlice";
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
   const dispatch = useDispatch();
   const authors = [];
-  authorsList.forEach(
+  authorsList?.forEach(
     (author) => course.authors.includes(author.id) && authors.push(author.name)
   );
 
@@ -77,6 +77,7 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
           />
           <Button
             handleClick={() => handleDeleteCourse(course.id)}
+            data-testid="delete"
             buttonText={<img src={deleteIcon} alt="delete" />}
           />
           <Button buttonText={<img src={editIcon} alt="edit" />} />

@@ -74,7 +74,7 @@ export const CourseInfo = () => {
           </div>
         </div>
       </div>
-      <Link to="/courses" className={styles.button}>
+      <Link to="/courses" className={styles.button} role="link">
         BACK
       </Link>
     </div>

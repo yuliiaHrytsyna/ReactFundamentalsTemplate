@@ -6,7 +6,7 @@ import { Button } from "../../common";
 import { CourseCard } from "./components/CourseCard/CourseCard";
 import { EmptyCourseList } from "./components";
 
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAuthorsSelector, getCoursesSelector } from "../../store/selectors";
 // Module 1:
@@ -55,15 +55,11 @@ export const Courses = ({ handleShowCourse }) => {
     navigate(`/courses/${value}`);
   };
 
-  const addNew = () => {
-    navigate(`/courses/add`);
-  };
-
   let content;
   if (!!coursesList.length) {
-    content = coursesList.map((course) => (
+    content = coursesList.map((course, i) => (
       <CourseCard
-        key={course.id}
+        key={i}
         course={course}
         authorsList={authorsList}
         handleShowCourse={(value) => openInfo(value)}
@@ -77,8 +73,7 @@ export const Courses = ({ handleShowCourse }) => {
     <>
       <div className={styles.panel}>
         <Button
-          buttonText={"ADD NEW COURSE"}
-          handleClick={addNew}
+          buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>}
           data-testid="createCourseButton"
         />
       </div>
