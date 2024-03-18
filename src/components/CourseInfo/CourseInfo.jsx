@@ -75,7 +75,7 @@ export const CourseInfo = () => {
           </div>
         </div>
       </div>
-      <Button role="link" buttonText={<Link to="/courses">BACK</Link>} />
+      <Button role="link" buttonText={<Link to="/courses">Back</Link>} />
     </div>
   );
 };
