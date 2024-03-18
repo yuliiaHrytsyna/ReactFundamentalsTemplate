@@ -31,6 +31,7 @@ import styles from "./styles.module.css";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCoursesSelector, getAuthorsSelector } from "../../store/selectors";
+import { Button } from "../../common/Button/Button";
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
@@ -74,9 +75,7 @@ export const CourseInfo = () => {
           </div>
         </div>
       </div>
-      <Link to="/courses" className={styles.button} role="link">
-        BACK
-      </Link>
+      <Button buttonText={<Link to="/courses">BACK</Link>} />
     </div>
   );
 };

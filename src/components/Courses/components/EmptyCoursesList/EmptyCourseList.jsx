@@ -11,7 +11,10 @@ export const EmptyCourseList = () => {
       <div className={styles.container}>
         <h2>Your List Is Empty</h2>
         <p>Please use "Add New Course" button to add your first course</p>
-        <Button buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>} />
+        <Button
+          data-testid="addCourse"
+          buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>}
+        />
       </div>
     </>
   );

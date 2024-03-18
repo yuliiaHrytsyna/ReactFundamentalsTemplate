@@ -100,6 +100,7 @@ export const CourseForm = () => {
           type={"text"}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          data-testid="titleInput"
         />
         <label>
           Description

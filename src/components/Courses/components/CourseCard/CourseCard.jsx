@@ -77,10 +77,13 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
           />
           <Button
             handleClick={() => handleDeleteCourse(course.id)}
-            data-testid="delete"
+            data-testid="deleteCourse"
             buttonText={<img src={deleteIcon} alt="delete" />}
           />
-          <Button buttonText={<img src={editIcon} alt="edit" />} />
+          <Button
+            data-testid="updateCourse"
+            buttonText={<img src={editIcon} alt="edit" />}
+          />
         </div>
       </div>
     </div>
