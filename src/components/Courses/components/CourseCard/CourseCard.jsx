@@ -53,8 +53,7 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
     (author) => course.authors.includes(author.id) && authors.push(author.name)
   );
 
-  const handleDeleteCourse = (id) =>
-    store.dispatch(deleteCourseThunk(id, localStorage.get("token")));
+  const handleDeleteCourse = (id) => store.dispatch(deleteCourseThunk(id));
   const handleUpdate = () => navigate(`/courses/update/${course.id}`);
 
   return (

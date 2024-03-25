@@ -105,17 +105,9 @@ export const CourseForm = () => {
       authors: authors.map((author) => author.id),
     };
     if (!courseId) {
-      store.dispatch(
-        createCourseThunk(saveRequest, localStorage.getItem("token"))
-      );
+      store.dispatch(createCourseThunk(saveRequest));
     } else {
-      const updateRequest = {
-        ...saveRequest,
-        id: courseId,
-      };
-      store.dispatch(
-        updateCourseThunk(updateRequest, localStorage.getItem("token"))
-      );
+      store.dispatch(updateCourseThunk(saveRequest, courseId));
     }
     navigate("/courses");
   };

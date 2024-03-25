@@ -5,9 +5,9 @@ import {
   updateCourseService,
 } from "../../services";
 
-export const deleteCourseThunk = (courseId, token) => {
+export const deleteCourseThunk = (courseId) => {
   return async (dispatch) => {
-    await deleteCourseService(courseId, token);
+    await deleteCourseService(courseId);
 
     dispatch({
       type: "courses/deleteCourse",
@@ -16,9 +16,9 @@ export const deleteCourseThunk = (courseId, token) => {
   };
 };
 
-export const createCourseThunk = (course, token) => {
+export const createCourseThunk = (course) => {
   return async (dispatch) => {
-    const course1 = await createCourse(course, token);
+    const course1 = await createCourse(course);
 
     dispatch({
       type: "courses/saveCourse",
@@ -38,13 +38,13 @@ export const getCoursesThunk = () => {
   };
 };
 
-export const updateCourseThunk = (course, token) => {
+export const updateCourseThunk = (course, id) => {
   return async (dispatch) => {
-    const updatedCourse = await updateCourseService(course, token);
+    const updatedCourse = await updateCourseService(course, id);
 
     dispatch({
       type: "courses/updateCourse",
-      payload: { course: updatedCourse },
+      payload: { course: updatedCourse, id },
     });
   };
 };

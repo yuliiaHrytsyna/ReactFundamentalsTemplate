@@ -66,13 +66,13 @@ export const getCurrentUser = async (token) => {
   return result;
 };
 
-export const updateCourseService = async (request, token) => {
-  const url = `http://localhost:4000/courses/${request.id}`;
+export const updateCourseService = async (request, id) => {
+  const url = `http://localhost:4000/courses/${id}`;
   const response = await fetch(url, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: localStorage.getItem("token"),
     },
     body: JSON.stringify(request),
   });
@@ -80,39 +80,39 @@ export const updateCourseService = async (request, token) => {
   return result.result;
 };
 
-export const logout = async (token) => {
+export const logout = async () => {
   const url = `http://localhost:4000/logout`;
   const response = await fetch(url, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: localStorage.getItem("token"),
     },
   });
   const result = await response.json();
   return result;
 };
 
-export const deleteCourseService = async (id, token) => {
+export const deleteCourseService = async (id) => {
   const url = `http://localhost:4000/courses/${id}`;
   const response = await fetch(url, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: localStorage.getItem("token"),
     },
   });
   const result = await response.json();
   return result;
 };
 
-export const createCourse = async (course, token) => {
+export const createCourse = async (course) => {
   const url = `http://localhost:4000/courses/add`;
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: localStorage.getItem("token"),
     },
     body: JSON.stringify(course),
   });
