@@ -25,14 +25,13 @@ import { Button } from "../../common/Button/Button";
 import styles from "./styles.module.css";
 
 import { login } from "../../services";
-import { useDispatch } from "react-redux";
-import { setUserData } from "../../store/slices/userSlice";
+import store from "../../store";
+import { getUserThunk } from "../../store/thunks/userThunk";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -51,13 +50,7 @@ export const Login = () => {
 
     const result = await login(data);
     localStorage.setItem("token", result.result);
-    const userData = {
-      isAuth: result.successful,
-      name: result.user.name,
-      email: result.user.email,
-      token: result.result,
-    };
-    dispatch(setUserData(userData));
+    store.dispatch(getUserThunk);
     return navigate("/courses");
   };
 

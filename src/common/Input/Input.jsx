@@ -11,6 +11,7 @@ export const Input = ({
   onChange,
   name,
   type,
+  value,
   isRequired = true,
   "data-testid": dataTestId,
 }) => (
@@ -23,6 +24,7 @@ export const Input = ({
       data-testid={dataTestId}
       name={name}
       required={isRequired}
+      value={value}
       type={type}
     />
   </label>

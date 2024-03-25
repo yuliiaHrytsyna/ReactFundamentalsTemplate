@@ -5,9 +5,10 @@ import { Logo } from "./components";
 import { Button } from "../../common";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { removeUserData } from "../../store/slices/userSlice";
+import { useSelector } from "react-redux";
 import { getUserNameSelector } from "../../store/selectors";
+import store from "../../store";
+import { logoutThunk } from "../../store/thunks/userThunk";
 
 // Module 1:
 // * add Logo and Button components
@@ -44,11 +45,10 @@ export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userName = useSelector(getUserNameSelector);
-  const dispatch = useDispatch();
 
   const logOut = () => {
     localStorage.removeItem("token");
-    dispatch(removeUserData());
+    store.dispatch(logoutThunk(localStorage.getItem("token")));
     navigate("/login");
   };
 
