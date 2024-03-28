@@ -83,7 +83,11 @@ export const Courses = ({ handleShowCourse }) => {
       <div className={styles.panel}>
         {userRole === "admin" ? (
           <Button
-            buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>}
+            buttonText={
+              <Link to="/courses/add" data-testid="linkToAdd">
+                ADD NEW COURSE
+              </Link>
+            }
             data-testid="createCourseButton"
           />
         ) : (
