@@ -8,7 +8,13 @@ import { EmptyCourseList } from "./components";
 
 import { Outlet, useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getAuthorsSelector, getCoursesSelector } from "../../store/selectors";
+import {
+  getAuthorsSelector,
+  getCoursesSelector,
+  getUserRoleSelector,
+} from "../../store/selectors";
+import store from "../../store";
+import { getUserThunk } from "../../store/thunks/userThunk";
 // Module 1:
 // * render list of components using 'CourseCard' component for each course
 // * render 'ADD NEW COURSE' button (reuse Button component)
@@ -44,10 +50,13 @@ export const Courses = ({ handleShowCourse }) => {
 
   const coursesList = useSelector(getCoursesSelector);
   const authorsList = useSelector(getAuthorsSelector);
+  const userRole = useSelector(getUserRoleSelector);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
+    } else {
+      store.dispatch(getUserThunk(localStorage.getItem("token")));
     }
   }, [navigate]);
 
@@ -72,10 +81,17 @@ export const Courses = ({ handleShowCourse }) => {
   const cardList = (
     <>
       <div className={styles.panel}>
-        <Button
-          buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>}
-          data-testid="createCourseButton"
-        />
+        {userRole === "admin" ? (
+          <Button
+            buttonText={<Link to="/courses/add">ADD NEW COURSE</Link>}
+            data-testid="createCourseButton"
+          />
+        ) : (
+          <p>
+            You don't have permissions to create a course. Please log in as
+            ADMIN
+          </p>
+        )}
       </div>
       {content}
     </>

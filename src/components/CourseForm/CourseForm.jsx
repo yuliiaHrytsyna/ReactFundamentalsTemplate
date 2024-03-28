@@ -44,7 +44,7 @@
 // //   **  CourseForm 'Add author' button click should add an author to the course authors list.
 // //   **  CourseForm 'Delete author' button click should delete an author from the course list.
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
 
@@ -55,10 +55,14 @@ import { AuthorItem } from "./components/AuthorItem/AuthorItem";
 import { getCourseDuration } from "../../helpers/getCourseDuration";
 
 import { Button } from "../../common";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getAuthorsSelector } from "../../store/selectors";
-import { saveCourse } from "../../store/slices/coursesSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getAuthorsSelector, getCoursesSelector } from "../../store/selectors";
+import store from "../../store";
+import {
+  createCourseThunk,
+  updateCourseThunk,
+} from "../../store/thunks/coursesThunk";
 // { authorsList, createCourse, createAuthor }
 
 export const CourseForm = () => {
@@ -66,13 +70,30 @@ export const CourseForm = () => {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [duration, setDuration] = useState();
+  const [authors, setAuthors] = useState([]);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const authorsList = useSelector(getAuthorsSelector);
+  const coursesList = useSelector(getCoursesSelector);
+  const { courseId } = useParams();
+
+  useEffect(() => {
+    if (courseId) {
+      const course = coursesList.find((item) => courseId === item.id);
+      setTitle(course.title);
+      setDescription(course.description);
+      handleDurationChange(course.duration);
+      const courseAuthors = [];
+      course.authors.forEach((item) =>
+        courseAuthors.push(authorsList.find((el) => el.id === item))
+      );
+      setAuthors(courseAuthors);
+    }
+  }, [authorsList, courseId, coursesList]);
 
   const handleDurationChange = (value) => {
     setDurationMapped(getCourseDuration(value));
     setDuration(value);
+    console.log("duration");
   };
 
   const handleSubmit = (e) => {
@@ -80,11 +101,20 @@ export const CourseForm = () => {
     const saveRequest = {
       title,
       description,
-      duration,
-      authors: [],
+      duration: Number(duration),
+      authors: authors.map((author) => author.id),
     };
-    dispatch(saveCourse(saveRequest));
+    if (!courseId) {
+      store.dispatch(createCourseThunk(saveRequest));
+    } else {
+      store.dispatch(updateCourseThunk(saveRequest, courseId));
+    }
     navigate("/courses");
+  };
+
+  const handleAuthorAdd = (e, author) => {
+    e.preventDefault();
+    setAuthors([...authors, author]);
   };
 
   return (
@@ -132,7 +162,11 @@ export const CourseForm = () => {
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
               {authorsList.map((author, i) => (
-                <AuthorItem name={author.name} key={i} />
+                <AuthorItem
+                  name={author.name}
+                  key={i}
+                  handleClick={(e) => handleAuthorAdd(e, author)}
+                />
               ))}
               {/* // use 'map' to display all available autors. Reuse 'AuthorItem' component for each author */}
             </div>
@@ -140,8 +174,15 @@ export const CourseForm = () => {
 
           <div className={styles.courseAuthorsContainer}>
             <h2>Course authors</h2>
+            {authors.length ? (
+              authors.map((author, i) => (
+                <AuthorItem name={author.name} key={i} />
+              ))
+            ) : (
+              <p className={styles.notification}>List is empty</p>
+            )}
             {/* // use 'map' to display course autors. Reuse 'AuthorItem' component for each author */}
-            <p className={styles.notification}>List is empty</p>
+            {/* <p className={styles.notification}>List is empty</p> */}
             {/* // display this
             paragraph if there are no authors in the course */}
           </div>
@@ -154,7 +195,7 @@ export const CourseForm = () => {
           handleClick={() => navigate("/courses")}
         />
         <Button
-          buttonText={"CREATE COURSE"}
+          buttonText={courseId ? "UPDATE COURSE" : "CREATE COURSE"}
           handleClick={handleSubmit}
           data-testid="createCourseButton"
         />

@@ -9,13 +9,14 @@ import {
   Courses,
   CourseInfo,
   CourseForm,
+  PrivateRoute,
 } from "./components";
 
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getCourses, getAuthors } from "./services";
-import { setCourses } from "./store/slices/coursesSlice";
-import { setAuthors } from "./store/slices/authorsSlice";
+import store from "./store/index";
+import { getCoursesThunk } from "./store/thunks/coursesThunk";
+import { getAuthorsThunk } from "./store/thunks/authorsThunk";
+import { getUserThunk } from "./store/thunks/userThunk";
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
 // * add next components to the App component: Header, Courses and CourseInfo
@@ -39,22 +40,20 @@ import { setAuthors } from "./store/slices/authorsSlice";
 // * wrap 'CourseForm' in the 'PrivateRoute' component
 
 function App() {
-  const dispatch = useDispatch();
-  const [element, setElement] = useState("/login");
+  const [element, setElement] = useState();
+  const fetchInitialData = async () => {
+    store.dispatch(getCoursesThunk());
+    store.dispatch(getAuthorsThunk());
+    if (localStorage.getItem("token")) {
+      store.dispatch(getUserThunk(localStorage.getItem("token")));
+    }
+  };
   useEffect(() => {
+    fetchInitialData();
     const hasToken = !!localStorage.getItem("token");
     setElement(hasToken ? <Navigate to="/courses" /> : <Login />);
   }, []);
 
-  const fetchInitialData = async () => {
-    const courses = await getCourses();
-    dispatch(setCourses(courses.result));
-    const authors = await getAuthors();
-    dispatch(setAuthors(authors.result));
-  };
-  useEffect(() => {
-    fetchInitialData();
-  });
   return (
     <div className={styles.wrapper}>
       <Header />
@@ -64,7 +63,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/courses" element={<Courses />}>
           <Route path=":courseId" element={<CourseInfo />} />
-          <Route path="add" element={<CourseForm />} />
+          <Route
+            path="add"
+            element={<PrivateRoute content={<CourseForm />} />}
+          />
+          <Route
+            path="update/:courseId"
+            element={<PrivateRoute content={<CourseForm />} />}
+          />
         </Route>
       </Routes>
     </div>

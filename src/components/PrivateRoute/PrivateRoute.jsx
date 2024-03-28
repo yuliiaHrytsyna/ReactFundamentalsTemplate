@@ -8,13 +8,13 @@
 // //   ** '/courses/update/:courseId'.
 // // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-4/home-task/components#private-route-new-component
 
-// import React from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+import { getUserRoleSelector } from "../../store/selectors";
+import { Navigate } from "react-router";
 
-// export const PrivateRoute = () => {
+export const PrivateRoute = ({ content }) => {
+  const auth = useSelector(getUserRoleSelector); // add logic to determine the value for the condition
 
-// 	//wriet your code here
-
-// 	return (
-// 			<p>PrivateRoute</p>//write your code here instead of this 'p' tag
-// 	);
-// };
+  return auth === "admin" ? content : <Navigate to="/courses" />;
+};

@@ -39,17 +39,22 @@ import editIcon from "../../../../assets/editButtonIcon.svg";
 
 import styles from "./styles.module.css";
 import { Button } from "../../../../common";
-import { useDispatch } from "react-redux";
-import { deleteCourse } from "../../../../store/slices/coursesSlice";
+import { useSelector } from "react-redux";
+import { getUserRoleSelector } from "../../../../store/selectors";
+import store from "../../../../store";
+import { deleteCourseThunk } from "../../../../store/thunks/coursesThunk";
+import { useNavigate } from "react-router";
 
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userRole = useSelector(getUserRoleSelector);
   const authors = [];
   authorsList?.forEach(
     (author) => course.authors.includes(author.id) && authors.push(author.name)
   );
 
-  const handleDeleteCourse = (id) => dispatch(deleteCourse(id));
+  const handleDeleteCourse = (id) => store.dispatch(deleteCourseThunk(id));
+  const handleUpdate = () => navigate(`/courses/update/${course.id}`);
 
   return (
     <div className={styles.cardContainer} data-testid="courseCard">
@@ -75,15 +80,21 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
             handleClick={() => handleShowCourse(course.id)}
             buttonText={"SHOW COURSE"}
           />
-          <Button
-            handleClick={() => handleDeleteCourse(course.id)}
-            data-testid="deleteCourse"
-            buttonText={<img src={deleteIcon} alt="delete" />}
-          />
-          <Button
-            data-testid="updateCourse"
-            buttonText={<img src={editIcon} alt="edit" />}
-          />
+          {userRole === "admin" && (
+            <>
+              {" "}
+              <Button
+                handleClick={() => handleDeleteCourse(course.id)}
+                data-testid="deleteCourse"
+                buttonText={<img src={deleteIcon} alt="delete" />}
+              />
+              <Button
+                data-testid="updateCourse"
+                buttonText={<img src={editIcon} alt="edit" />}
+                handleClick={handleUpdate}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
