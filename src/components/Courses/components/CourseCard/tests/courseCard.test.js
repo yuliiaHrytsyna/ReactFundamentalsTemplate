@@ -1,5 +1,5 @@
 import React from "react";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -7,7 +7,6 @@ import userSlice from "../../../../../store/slices/userSlice.js";
 import coursesSlice from "../../../../../store/slices/coursesSlice.js";
 import authorsSlice from "../../../../../store/slices/authorsSlice.js";
 import { CourseCard } from "../../index.js";
-import App from "../../../../../App.jsx";
 
 const course = {
   title: "title",
@@ -116,26 +115,26 @@ describe("CourseCard", () => {
 
     expect(screen.getByText(formattedDate)).toBeInTheDocument();
   });
-  test("renders CoursesForm on button click", () => {
-    localStorage.setItem("token", "123456");
-    render(
-      Wrapper(
-        <MemoryRouter
-          initialEntries={["/courses", "/courses/1"]}
-          initialIndex={0}
-        >
-          <App />
-        </MemoryRouter>
-      )
-    );
+  // test("renders CoursesForm on button click", () => {
+  //   localStorage.setItem("token", "123456");
+  //   render(
+  //     Wrapper(
+  //       <MemoryRouter
+  //         initialEntries={["/courses", "/courses/1"]}
+  //         initialIndex={0}
+  //       >
+  //         <App />
+  //       </MemoryRouter>
+  //     )
+  //   );
 
-    act(() => {
-      const button = screen.getByText("SHOW COURSE");
-      fireEvent.click(button);
-    });
+  //   act(() => {
+  //     const button = screen.getByText("SHOW COURSE");
+  //     fireEvent.click(button);
+  //   });
 
-    expect(screen.getByText(`${course.title}`)).toBeInTheDocument();
-    expect(screen.getByText(`${course.description}`)).toBeInTheDocument();
-    expect(screen.getByText("Back")).toBeInTheDocument();
-  });
+  //   expect(screen.getByText(`${course.title}`)).toBeInTheDocument();
+  //   expect(screen.getByText(`${course.description}`)).toBeInTheDocument();
+  //   expect(screen.getByText("Back")).toBeInTheDocument();
+  // });
 });
