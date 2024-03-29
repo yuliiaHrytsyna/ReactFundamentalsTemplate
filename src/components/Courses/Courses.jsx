@@ -6,7 +6,13 @@ import { Button } from "../../common";
 import { CourseCard } from "./components/CourseCard/CourseCard";
 import { EmptyCourseList } from "./components";
 
-import { Outlet, useNavigate, useParams, Link } from "react-router-dom";
+import {
+  Outlet,
+  useNavigate,
+  useParams,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   getAuthorsSelector,
@@ -46,6 +52,7 @@ import { getUserThunk } from "../../store/thunks/userThunk";
 
 export const Courses = ({ handleShowCourse }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { courseId } = useParams();
 
   const coursesList = useSelector(getCoursesSelector);
@@ -62,6 +69,10 @@ export const Courses = ({ handleShowCourse }) => {
 
   const openInfo = (value) => {
     navigate(`/courses/${value}`);
+  };
+
+  const test = () => {
+    navigate(`/courses/add`);
   };
 
   let content;
@@ -84,10 +95,11 @@ export const Courses = ({ handleShowCourse }) => {
         {userRole === "admin" ? (
           <Button
             buttonText={
-              <Link to="/courses/add" data-testid="linkToAdd">
+              <Link to="/courses/add" id="linkToAdd">
                 ADD NEW COURSE
               </Link>
             }
+            handleClick={test}
             data-testid="createCourseButton"
           />
         ) : (
@@ -104,7 +116,7 @@ export const Courses = ({ handleShowCourse }) => {
   return (
     <>
       <div className={styles.container}>
-        {!courseId && window.location.pathname.indexOf("/add") === -1 ? (
+        {!courseId && location.pathname.indexOf("/add") === -1 ? (
           cardList
         ) : (
           <Outlet />

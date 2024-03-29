@@ -119,7 +119,7 @@ export const CourseForm = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Course edit or Create page</h2>
+      <h2>{courseId ? "Course Edit" : "Course Create"}</h2>
 
       <form onSubmit={handleSubmit}>
         {/* // reuse Input component for title field with data-testid="titleInput" */}
