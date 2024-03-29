@@ -14,20 +14,18 @@ export const Input = ({
   value,
   isRequired = true,
   "data-testid": dataTestId,
-}) => {
-  return (
-    <label className={styles.label}>
-      {labelText}
-      <input
-        onChange={onChange}
-        placeholder={placeholderText}
-        className={styles.input}
-        data-testid={dataTestId}
-        name={name}
-        required={isRequired}
-        value={value}
-        type={type}
-      />
-    </label>
-  );
-};
+}) => (
+  <label className={styles.label}>
+    {labelText}
+    <input
+      onChange={onChange}
+      placeholder={placeholderText}
+      className={styles.input}
+      data-testid={dataTestId}
+      name={name}
+      required={isRequired}
+      value={value}
+      type={type}
+    />
+  </label>
+);

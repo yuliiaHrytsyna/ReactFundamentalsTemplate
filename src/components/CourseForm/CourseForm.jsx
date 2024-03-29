@@ -93,6 +93,7 @@ export const CourseForm = () => {
   const handleDurationChange = (value) => {
     setDurationMapped(getCourseDuration(value));
     setDuration(value);
+    console.log("duration");
   };
 
   const handleSubmit = (e) => {
@@ -128,10 +129,7 @@ export const CourseForm = () => {
           name={"title"}
           type={"text"}
           value={title}
-          onChange={(e) => {
-            console.log(e);
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
           data-testid="titleInput"
         />
         <label>

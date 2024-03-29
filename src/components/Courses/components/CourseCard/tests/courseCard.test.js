@@ -22,22 +22,6 @@ const authorsList = [
   { id: "3", name: "Author3" },
 ];
 
-jest.mock("../../../../../services.js", () => ({
-  login: () => ({
-    result: { name: "test user", role: "admin", token: "123456" },
-  }),
-  getCurrentUser: () => ({
-    result: { name: "test user", role: "admin", token: "123456" },
-  }),
-  getCourses: () => ({
-    result: [course],
-  }),
-  getAuthors: () => ({
-    result: authorsList,
-  }),
-  logout: () => ({ result: null }),
-}));
-
 const store1 = configureStore({
   reducer: {
     user: userSlice,
@@ -115,26 +99,4 @@ describe("CourseCard", () => {
 
     expect(screen.getByText(formattedDate)).toBeInTheDocument();
   });
-  // test("renders CoursesForm on button click", () => {
-  //   localStorage.setItem("token", "123456");
-  //   render(
-  //     Wrapper(
-  //       <MemoryRouter
-  //         initialEntries={["/courses", "/courses/1"]}
-  //         initialIndex={0}
-  //       >
-  //         <App />
-  //       </MemoryRouter>
-  //     )
-  //   );
-
-  //   act(() => {
-  //     const button = screen.getByText("SHOW COURSE");
-  //     fireEvent.click(button);
-  //   });
-
-  //   expect(screen.getByText(`${course.title}`)).toBeInTheDocument();
-  //   expect(screen.getByText(`${course.description}`)).toBeInTheDocument();
-  //   expect(screen.getByText("Back")).toBeInTheDocument();
-  // });
 });

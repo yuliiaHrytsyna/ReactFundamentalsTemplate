@@ -8,14 +8,6 @@ import coursesSlice from "../../../store/slices/coursesSlice.js";
 import authorsSlice from "../../../store/slices/authorsSlice.js";
 import { CourseForm } from "../CourseForm.jsx";
 
-const course = {
-  title: "title",
-  description: "description",
-  duration: 120,
-  creationDate: "1/1/2020",
-  id: "1",
-  authors: [],
-};
 jest.mock("../../../services.js", () => ({
   login: () => ({
     result: { name: "test user", role: "admin", token: "123456" },
@@ -24,7 +16,16 @@ jest.mock("../../../services.js", () => ({
     result: { name: "test user", role: "admin", token: "123456" },
   }),
   getCourses: () => ({
-    result: [course],
+    result: [
+      {
+        title: "title",
+        description: "description",
+        duration: 120,
+        creationDate: "1/1/2020",
+        id: "1",
+        authors: [{ id: "1", name: "Author1" }],
+      },
+    ],
   }),
   getAuthors: () => ({
     result: [
@@ -34,7 +35,6 @@ jest.mock("../../../services.js", () => ({
     ],
   }),
   logout: () => ({ result: null }),
-  createCourse: () => ({ result: null }),
 }));
 
 const store1 = configureStore({
@@ -45,7 +45,16 @@ const store1 = configureStore({
   },
   preloadedState: {
     user: { name: "test user", role: "admin", token: "123456" },
-    courses: [course],
+    courses: [
+      {
+        title: "title",
+        description: "description",
+        duration: 120,
+        creationDate: "1/1/2020",
+        id: "1",
+        authors: [{ id: "1", name: "Author1" }],
+      },
+    ],
     authors: [
       { id: "1", name: "Author1" },
       { id: "2", name: "Author2" },
