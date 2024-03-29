@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -84,5 +84,22 @@ describe("CourseForm", () => {
     expect(
       authorsContainer.querySelectorAll("[data-testid='authorItem']")
     ).toHaveLength(0);
+  });
+  test("CourseForm 'Add author' button click should add an author to the course authors list.", () => {
+    render(
+      Wrapper(
+        <MemoryRouter>
+          <CourseForm />
+        </MemoryRouter>
+      )
+    );
+
+    const addButton = screen.getAllByTestId("addAuthor")[0];
+    fireEvent.click(addButton);
+
+    const authorsContainer = document.querySelector(".courseAuthorsContainer");
+    expect(
+      authorsContainer.querySelectorAll("[data-testid='authorItem']")
+    ).toHaveLength(1);
   });
 });
